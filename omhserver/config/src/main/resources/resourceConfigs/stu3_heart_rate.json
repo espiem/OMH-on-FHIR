@@ -1,0 +1,102 @@
+{
+  "fhirTemplate": "stu3_Observation",
+  "shimKeys": [
+      "fitbit"
+  ],
+  "versions" : {
+      "fhir" : "stu3",
+      "openmhealth" : "1.0"
+  },
+  "patches": {
+      "omh": [
+          {
+              "op": "replace",
+              "fhirPath": "/identifier/0/value",
+              "omhPath": "/header/id",
+              "required" : true
+          },
+          {
+              "op": "replace",
+              "fhirPath": "/subject/identifier/value",
+              "omhPath": "/header/user_id",
+              "required" :  false
+          },
+          {
+              "op": "replace",
+              "fhirPath": "/effectiveDateTime",
+              "omhPath": "/body/effective_time_frame/date_time",
+              "required" :  false
+          },
+          {
+              "op": "replace",
+              "fhirPath": "/issued",
+              "omhPath": "/header/creation_date_time",
+              "required" : true
+          },
+          {
+              "op": "replace",
+              "fhirPath": "/comment",
+              "omhPath": "/body/user_notes",
+              "required" :  false
+          },
+          {
+              "op": "replace",
+              "fhirPath": "/valueQuantity/value",
+              "omhPath": "/body/heart_rate/value",
+              "required" :  true
+          },
+          {
+              "op": "replace",
+              "fhirPath": "/device/display",
+              "omhPath": "/header/acquisition_provenance/modality",
+              "required":  false
+          }
+      ],
+      "other": [
+          {
+              "op" : "remove",
+              "path" : "/effectivePeriod"
+          },
+          {
+              "op": "replace",
+              "path": "/category/0/coding/0/code",
+              "value": "vital-signs"
+          },
+          {
+              "op": "replace",
+              "path": "/category/0/coding/0/display",
+              "value": "Vital Signs"
+          },
+          {
+              "op": "replace",
+              "path": "/code/coding/0/system",
+              "value": "http://loinc.org"
+          },
+          {
+              "op": "replace",
+              "path": "/code/coding/0/code",
+              "value": "8867-4"
+          },
+          {
+              "op": "replace",
+              "path": "/code/coding/0/display",
+              "value": "Heart rate"
+          },
+          {
+              "op": "replace",
+              "path": "/valueQuantity/unit",
+              "value": "beats/min"
+          },
+          {
+              "op": "replace",
+              "path": "/valueQuantity/system",
+              "value": "http://unitsofmeasure.org"
+          },
+          {
+              "op": "replace",
+              "path": "/valueQuantity/code",
+              "value": "{/min}"
+          }
+      ]
+  }
+}

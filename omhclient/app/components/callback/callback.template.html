@@ -1,0 +1,6 @@
+<div ng-if="$ctrl.omhOnFhirApi.getLoginSuccessful() == true">
+    <h3>Authentication was successful. Please close window.</h3>
+</div>
+<div ng-if="$ctrl.omhOnFhirApi.getLoginSuccessful() == false">
+    <h3>Authentication was not successful. Please close window.</h3>
+</div>

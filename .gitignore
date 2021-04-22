@@ -1,0 +1,41 @@
+/target/
+/omhclient-angular5/
+/omhserver/target
+omhclient/app/bower_components
+omhclient/node_modules
+omhclient/.travis.yml
+omhclient/yarn.lock
+!.mvn/wrapper/maven-wrapper.jar
+./omhclient/package-lock.json
+**/target
+error.log
+
+### ENV ###
+shimmer-resource-server-prod.env
+omhserver/*-prod.env
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### Vim ###
+*.swp
