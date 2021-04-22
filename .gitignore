@@ -5,14 +5,10 @@ omhclient/app/bower_components
 omhclient/node_modules
 omhclient/.travis.yml
 omhclient/yarn.lock
+omhserver/*.env
 !.mvn/wrapper/maven-wrapper.jar
+shimmer-resource-server.env
 ./omhclient/package-lock.json
-**/target
-error.log
-
-### ENV ###
-shimmer-resource-server-prod.env
-omhserver/*-prod.env
 
 ### STS ###
 .apt_generated
@@ -36,6 +32,3 @@ omhserver/*-prod.env
 /dist/
 /nbdist/
 /.nb-gradle/
-
-### Vim ###
-*.swp

@@ -1,25 +1,30 @@
 #Option 1: build project and run with Node
 FROM node:8 as builder
 
-#either prod or dev
-ARG buildEnv=prod
-
 # make a working directory
-RUN mkdir -p /usr/local/omhclient
+RUN mkdir -p /usr/local/app
 
 # set the working directory
-WORKDIR /usr/local/omhclient
+WORKDIR /usr/local/app
 
 # copy dependency definitions
-COPY . /usr/local/omhclient
+#COPY package.json /usr/local/app
+COPY . /usr/local/app
 
-#copy over the js environment file for the environment we are building
-COPY app/js/${buildEnv}-env.js /usr/local/omhclient/app/js/env.js
-
+# install dependencies
+#RUN npm install
 # install bower and then install the project
-RUN rm /usr/local/omhclient/app/js/*-env.js && npm install && npm install -g bower && bower install --allow-root omh-web-visualizations
+#RUN ls -la /usr/local/app
+RUN npm install && npm install -g bower && bower install --allow-root omh-web-visualizations
+
+# copy over project
+#COPY . /usr/local/app
+#RUN ls -la /usr/local/app/app
+#build code
+#RUN ng build --prod --base-href=/omhonfhir/
 
 #deploy to NGINX
 FROM nginx
-COPY --from=builder /usr/local/omhclient/app /etc/nginx/html/omhonfhir
-COPY --from=builder ./usr/local/omhclient/nginx.conf /etc/nginx/conf.d/default.conf
+#COPY --from=builder /usr/local/app/dist/omhclient /etc/nginx/html/omhonfhir
+COPY --from=builder /usr/local/app/app /etc/nginx/html/omhonfhir
+COPY --from=builder ./usr/local/app/nginx.conf /etc/nginx/conf.d/default.conf
